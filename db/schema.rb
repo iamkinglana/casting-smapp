@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_02_193800) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_02_212309) do
+  create_table "casts", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_casts_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
-    t.integer "tweet_id"
+    t.integer "cast_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tweet_id"], name: "index_comments_on_tweet_id"
+    t.index ["cast_id"], name: "index_comments_on_cast_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -32,19 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_193800) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "tweet_id"
+    t.integer "cast_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
+    t.index ["cast_id"], name: "index_likes_on_cast_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-  create_table "tweets", force: :cascade do |t|
-    t.text "content"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,11 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_193800) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "tweets"
+  add_foreign_key "casts", "users"
+  add_foreign_key "comments", "casts"
   add_foreign_key "comments", "users"
   add_foreign_key "follows", "users", column: "followed_user_id"
   add_foreign_key "follows", "users", column: "follower_id"
-  add_foreign_key "likes", "tweets"
+  add_foreign_key "likes", "casts"
   add_foreign_key "likes", "users"
-  add_foreign_key "tweets", "users"
 end

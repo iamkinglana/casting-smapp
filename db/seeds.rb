@@ -17,22 +17,22 @@ require 'faker'
   )
 end
 
-# Create Tweets
+# Create casts
 users = User.all
 users.each do |user|
   3.times do
-    user.tweets.create!(
+    user.casts.create!(
       content: Faker::Lorem.sentence
     )
   end
 end
 
 # Create Comments
-tweets = Tweet.all
+casts = Cast.all
 users.each do |user|
-  tweets.each do |tweet|
+  casts.each do |cast|
     2.times do
-      tweet.comments.create!(
+      cast.comments.create!(
         content: Faker::Lorem.sentence,
         user: user
       )
@@ -41,9 +41,9 @@ users.each do |user|
 end
 
 # Create Likes
-tweets.each do |tweet|
+casts.each do |cast|
   users.sample(3).each do |user|
-    tweet.likes.create!(
+    cast.likes.create!(
       user: user
     )
   end
