@@ -13,7 +13,7 @@ require 'faker'
   User.create!(
     username: Faker::Internet.unique.username,
     email: Faker::Internet.unique.email,
-    password_digest: 'password'
+    password: 'password'
   )
 end
 
