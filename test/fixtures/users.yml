@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  signup: MyString
+  login: MyString
+  logout: MyString
+  update: MyString
+
+two:
+  signup: MyString
+  login: MyString
+  logout: MyString
+  update: MyString
