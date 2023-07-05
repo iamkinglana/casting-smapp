@@ -21,6 +21,7 @@ class FollowsController < ApplicationController
 
   private
 
+  
   def update_follower_counts(user)
     user.update(followers_count: user.followers.count)
     current_user.update(following_count: current_user.following.count)

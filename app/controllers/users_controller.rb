@@ -49,8 +49,7 @@ class UsersController < ApplicationController
 
   def logout
     # Handle user logout by invalidating the token
-    # Example: You might have a current_user method that retrieves the user based on the token and set it to nil.
-    # current_user = nil
+
     render json: { message: 'User logged out successfully' }
   end
 
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :email, :password, :bio, :avatar) # Add additional attributes as needed
+    params.permit(:username, :email, :password, :bio, :avatar) 
   end
 
   def generate_token(user_id)
